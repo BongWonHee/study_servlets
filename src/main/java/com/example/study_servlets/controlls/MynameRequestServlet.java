@@ -11,14 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/mynameRequestServlet")
 public class MynameRequestServlet extends HttpServlet {
-<<<<<<< HEAD
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
-=======
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
->>>>>>> 520a0de2f97b2a6e9b86e6328ae7a411f3c8cb0d
+
         try {
             PrintWriter printWriter = response.getWriter();
             String contents = "<!DOCTYPE html>\r\n" + //
@@ -35,7 +32,7 @@ public class MynameRequestServlet extends HttpServlet {
                     "        input your name\r\n" + //
                     "    </div>\r\n" + //
                     "    <form action=\"/getRequestParamsServlet\" method=\"get\">\r\n" + //
-<<<<<<< HEAD
+
                     "        <div>\r\n" + //
                     "            first name : <input type=\"text\" name=\"first_name\">\r\n" + //
                     "        </div>\r\n" + //
@@ -45,11 +42,8 @@ public class MynameRequestServlet extends HttpServlet {
                     "        <div>\r\n" + //
                     "            <button type=\"submit\">go!!</button>\r\n" + //
                     "        </div>\r\n" + //
-=======
-                    "        <div> first name : <input type=\"text\" name=\"first_name\"></div>\r\n" + //
-                    "        <div> second name : <input type=\"text\" name=\"second_name\"></div>\r\n" + //
-                    "        <div> <button type=\"submit\">\uBCF4\uB0B4\uAE30</button></div>\r\n" + //
->>>>>>> 520a0de2f97b2a6e9b86e6328ae7a411f3c8cb0d
+
+
                     "    </form>\r\n" + //
                     "</body>\r\n" + //
                     "\r\n" + //
@@ -57,16 +51,12 @@ public class MynameRequestServlet extends HttpServlet {
             printWriter.println(contents);
             printWriter.close();
         } catch (Exception e) {
-<<<<<<< HEAD
-            System.out.println(e.getMessage());// TODO: handle exception
-        }
-    }
-=======
+
             System.out.println(e.getMessage());
             // TODO: handle exception
         }
 
     }
 
->>>>>>> 520a0de2f97b2a6e9b86e6328ae7a411f3c8cb0d
+
 }

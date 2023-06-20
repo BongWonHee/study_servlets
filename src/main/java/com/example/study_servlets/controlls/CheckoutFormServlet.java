@@ -9,24 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/getRequestParamsServlet")
-public class GetRequestParamsServley extends HttpServlet {
+@WebServlet(urlPatterns = "/checkoutFormServlet")
+public class CheckoutFormServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String firstName = request.getParameter("first_name");
-            String secondName = request.getParameter("second_name");
-            // 클라이언트에게 네트워크를 통해서 전송 하는 것
             PrintWriter printWriter = response.getWriter();
-            String contents = "Bong WonHee !";
-            contents = "<!DOCTYPE html>\r\n" + //
+            String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
                     "\r\n" + //
                     "<head>\r\n" + //
                     "    <meta charset=\"UTF-8\">\r\n" + //
                     "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
-                    "    <title>Document</title>\r\n" + //
+                    "    <title>CheckForm</title>\r\n" + //
                     "    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\">\r\n" + //
                     "</head>\r\n" + //
                     "\r\n" + //
@@ -115,10 +110,6 @@ public class GetRequestParamsServley extends HttpServlet {
                     "</html>";
             printWriter.println(contents);
             printWriter.close();
-            // PrintWriter printWriter = response.getWriter();
-            // String contents = "";
-            // printWriter.println(contents);
-            // printWriter.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
