@@ -1,6 +1,7 @@
 ## study_servlets 사용법
 
 - gradle 설치하기
+- springboot 설치하기
 
 ## Servlets 배워보기
 |제목|링크|설명|비고|
