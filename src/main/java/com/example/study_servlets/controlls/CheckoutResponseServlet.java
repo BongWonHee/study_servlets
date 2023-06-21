@@ -81,9 +81,9 @@ public class CheckoutResponseServlet extends HttpServlet {
                     "                <div class=\"col-4\">\r\n" + //
                     "                    <div clas=\"form-label\">Country</div>\r\n" + //
                     "                    <select name="+country+" id=\"\" class=\"forme-select form-control \">\r\n" + //
-                    "                        <option value=\"korea\">Korea</option>\r\n" + //
-                    "                        <option value=\"american\">American</option>\r\n" + //
-                    "                        <option value=\"japan\">Japan</option>\r\n" + //
+                    "                        <option value="+country+">Korea</option>\r\n" + //
+                    "                        <option value="+country+">American</option>\r\n" + //
+                    "                        <option value="+country+">Japan</option>\r\n" + //
                     "                    </select>\r\n" + //
                     "                </div>\r\n" + //
                     "\r\n" + //
@@ -92,9 +92,9 @@ public class CheckoutResponseServlet extends HttpServlet {
                     "                <div class=\"col-4\">\r\n" + //
                     "                    <label class=\"form-label\">state</label>\r\n" + //
                     "                    <select name="+state+" id=\"\" class=\"forme-select form-control \">\r\n" + //
-                    "                        <option value=\"state1\">state1</option>\r\n" + //
-                    "                        <option value=\"state2\">state2</option>\r\n" + //
-                    "                        <option value=\"state3\">state3</option>\r\n" + //
+                    "                        <option value="+state+">state1</option>\r\n" + //
+                    "                        <option value="+state+">state2</option>\r\n" + //
+                    "                        <option value="+state+">state3</option>\r\n" + //
                     "                    </select>\r\n" + //
                     "\r\n" + //
                     "                </div>\r\n" + //
