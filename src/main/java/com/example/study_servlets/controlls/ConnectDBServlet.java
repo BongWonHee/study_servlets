@@ -1,8 +1,10 @@
 package com.example.study_servlets.controlls;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,33 +12,83 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.study_servlets.commons.Commons;
+import com.example.study_servlets.daos.CarInforsDao;
+import com.example.study_servlets.daos.FactorysDao;
+
 @WebServlet(urlPatterns = "/connectDBServlet")
 public class ConnectDBServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            // - MySQL workbench 실행 : JDBC
-            // - User/password와 접속 IP:port 접속
-            String url = "jdbc:mysql://192.168.224:3306/db_cars";
-            String user = "root";
-            String password = "!yojulab*";
 
-            Connection connection = DriverManager.getConnection(url, user, password); // network 자원사용
-            System.out.println("DB연결 성공\n");
-
-            Statement statement = connection.createStatement();
-            String query = "";
+            // 클라이언트에 html 화면제공
+            String contents = "<!DOCTYPE html>\r\n" + //
+                    "<html lang=\"en\">\r\n" + //
+                    "\r\n" + //
+                    "<head>\r\n" + //
+                    "<meta charset=\"UTF-8\">\r\n" + //
+                    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
+                    "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\">\r\n"
+                    + //
+                    "<title>Document</title>\r\n" + //
+                    "</head>\r\n" + //
+                    "\r\n" + //
+                    "<body>\r\n" + //
+                    "<div class=\"container\">\r\n" + //
+                    "<table class=\"table table-bordered table-hover\">\r\n" + //
+                    "<thead>\r\n" + //
+                    "<tr>\r\n" + //
+                    "<th>COMPANY</th>\r\n" + //              
+                    "<th>COMPANY_ID</th>                   \r\n" + //
+                    "</tr>\r\n" + //
+                    "</thead>\r\n"; //
 
             // - query Edit
-            // Statement statement = connection.createStatement(); // DB자원
-            // String query = "SELECT * FROM factorys";
-            // // FactoryDMLs factoryDMLs = new FactoryDMLs();
-            // ResultSet resultSet = factoryDMLs.selectStatements(statement, query); //
+            FactorysDao factorysDao = new FactorysDao();
+            ArrayList factorylist = new ArrayList<>();
+            factorylist = factorysDao.seletAll();
             // select문에서 table 형태의 결과값 출력명령어
-            // while (resultSet.next()) {
-            // System.out.println(resultSet.getString("COMPANY_ID") +
-            // resultSet.getString("COMPANY"));
+            for (int i = 0; i < factorylist.size(); i++) {
+                HashMap hashMap = new HashMap<>();
+                hashMap = (HashMap) factorylist.get(i);
+
+                contents = contents + "<tr>\r\n" + //
+                        "<td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
+                        "<td>" + hashMap.get("COMPANY") + "</td>                   \r\n" + //
+                        "</tr>\r\n"; //
+            }
+            CarInforsDao carInforsDao = new CarInforsDao();
+            ArrayList carInforsList = new ArrayList<>();
+            carInforsList = carInforsDao.seletAll();
+            for (int i = 0; i < carInforsList.size(); i++) {
+                HashMap hashMap = new HashMap<>();
+                hashMap = (HashMap) carInforsList.get(i);
+
+                contents = contents + "<tr>\r\n" + //
+                        "<td>" + hashMap.get("CAR_NAME") + "</td>\r\n" + //
+                        "<td>" + hashMap.get("YEAR") + "</td>  \r\n" + //
+                        "<td>" + hashMap.get("CAR_INFOR_ID") + "</td>  \r\n" + //
+                        "<td>" + hashMap.get("COMPANY_ID") + "</td>  \r\n" + //
+                        "</tr>\r\n"; //
+            }
+
+            // contents = contents + "                </tr>\r\n" + //
+            //         "            </tbody>\r\n" + //
+            //         "        </table>\r\n" + //
+            //         "    </div>\r\n" + //
+            //         "</body>\r\n" + //
+            //         "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n"
+            //         + //
+            //         "\r\n" + //
+            //         "</html>";
+
+            // 클라이언트에 html화면제공
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter printWriter = response.getWriter();
+            printWriter.println(contents);
+            printWriter.close();
 
             // }
             // query = "select count(*) as CNT from factorys;";
@@ -78,7 +130,7 @@ public class ConnectDBServlet extends HttpServlet {
             // connection.close();
 
         } catch (Exception e) {
-            // TODO: handle exception
+
             System.out.println(e.getMessage());
         } finally {
 
