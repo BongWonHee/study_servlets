@@ -97,14 +97,12 @@ public class ConnectDBServlet extends HttpServlet {
             // int totalCount = 0;
             // while (resultSet.next()) {
             // System.out.println(resultSet.getInt("CNT"));
-            // totalCount = resultSet.getInt("CNT");
+            // totalCount = resultSet.getInt("CNT"); }
 
-            // }
-
-            // // insert into factorys
-            // // (COMPANY_ID, COMPANY)
-            // // value
-            // // ('CAR-01', 'AUDI');
+            // insert into factorys
+            // (COMPANY_ID, COMPANY)
+            // value
+            // ('CAR-01', 'AUDI');
 
             // String companyid = "CAR-01";
             // String company = "AUDI";
@@ -133,8 +131,7 @@ public class ConnectDBServlet extends HttpServlet {
 
             System.out.println(e.getMessage());
         } finally {
-
+            System.out.println();
         }
-        System.out.println();
     }
 }

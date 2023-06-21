@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 public class Commons {
+
     public Statement getStatement() {
         String url = "jdbc:mysql://127.0.0.1:3306/db_cars";
         String user = "root";
@@ -31,6 +32,7 @@ public class Commons {
         String strDate = formatter.format(date);
         return strDate;
     }
+
 
     public String generatUuid() {
 
