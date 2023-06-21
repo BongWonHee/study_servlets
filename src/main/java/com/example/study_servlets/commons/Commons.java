@@ -1,4 +1,4 @@
-package com.example.study_servlets.Commons;
+package com.example.study_servlets.commons;
 
 import java.util.UUID;
 

@@ -16,7 +16,7 @@ public class sCheckoutServlet extends HttpServlet{
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            // TODO: handle exception
+            
         }
     }
 }
