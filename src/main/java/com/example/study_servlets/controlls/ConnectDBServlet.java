@@ -63,13 +63,8 @@ public class ConnectDBServlet extends HttpServlet {
                         "<td colspan = \"2\">" + hashMap.get("COMPANY") + "</td>\r\n" + //
                         "</tr>\r\n"; //
             }
-<<<<<<< HEAD
-
-            contents = contents +
-=======
 //바로 아래 contents는 CarInforsDao에 대한 thead 넣은 구문. 
             contents = contents + 
->>>>>>> dc832d0df2ce1a76256f8e411d2ffc4086c531eb
                     "<tr>\r\n" + //
                     "<th>CAR_NAME</th>\r\n" + //
                     "<th>YEAR</th>\r\n" + //
