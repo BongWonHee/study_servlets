@@ -9,26 +9,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.example.study_servlets.commons.Commons;
 import com.example.study_servlets.daos.OptionInforsDao;
+import com.example.study_servlets.daos.OptioninforsDao;
+
 
 @WebServlet(urlPatterns = "/optionInforsDeleteServlet")
 public class OptionInforsDeleteServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         try {
-            String unique_id = request.getParameter("unique_id"); //html에서 클라이언트가 보내온 값을 받는다.
-            OptionInforsDao optionInforsDao = new OptionInforsDao();
-            int count = optionInforsDao.DeleteWithUniqeID(unique_id);
+            // Delete를 하기위한 java문.
+            // Delete를 할 method를 만들기.
+            // 1) unique_id받는 method
+            // 2) unique_id를 받을때 int로 return???????
+
+            String unique_id = request.getParameter("unique_id");
+            OptioninforsDao optionInforsDao = new OptioninforsDao();
+           int count =  optionInforsDao.DeleteWithUniqueID(unique_id);
            
-            response.setContentType("text/html;charset=UTF8");
+            response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter();
-            String contents = "Delete count :"+ count ; //클라이언트에게 결과를 송출해준다.
+            String contents = "Delete count: " + count;//mySQL의 Delete query실행문
+
             printWriter.println(contents);
             printWriter.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
 }
