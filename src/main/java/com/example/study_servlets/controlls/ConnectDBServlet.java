@@ -42,12 +42,12 @@ public class ConnectDBServlet extends HttpServlet {
                     "            <thead>\r\n" + //
                     "                <tr>\r\n" + //
                     "<thead>\r\n" + //
-                    "                <tr>\r\n" + //
-                    "                    <th>COMPANY_ID</th>\r\n" + //
-                    "                    <th>COMPANY</th>\r\n" + //
-                    "                </tr>\r\n" + //
-                    "            </thead>\r\n" + //
-                    "            <tbody>\r\n";
+                    "<tr>\r\n" + //
+                    "<th>COMPANY</th>\r\n" + //
+                    "<th>COMPANY_ID</th>\r\n" + //
+                    "</tr>\r\n" + //
+                    "</thead>\r\n"; //
+
             // - query Edit
 
             FactorysDao factorysDao = new FactorysDao();
@@ -64,14 +64,15 @@ public class ConnectDBServlet extends HttpServlet {
                         "</tr>\r\n"; //
             }
 //바로 아래 contents는 CarInforsDao에 대한 thead 넣은 구문. 
-             contents = contents + "                    <th>CAR_NAME</th>\r\n" + //
-                    "                    <th>YEAR</th>\r\n" + //
-                    "                    <th>CAR_INFOR_ID</th>\r\n" + //
-                    "                    <th>COMPANY_ID</th>\r\n" + //
-                    "                </tr>\r\n" + //
-                    "            </thead>\r\n" + //
-                    "            <tbody>\r\n";
-                    
+            contents = contents + 
+                    "<tr>\r\n" + //
+                    "<th>CAR_NAME</th>\r\n" + //
+                    "<th>YEAR</th>\r\n" + //
+                    "<th>CAR_INFOR_ID</th>\r\n" + //
+                    "<th>COMPANY_ID</th>\r\n" + //
+                    "</tr>\r\n" ;
+                   
+            
             CarInforsDao carInforsDao = new CarInforsDao();
             ArrayList carInforsList = new ArrayList<>();
             carInforsList = carInforsDao.seletAll();
