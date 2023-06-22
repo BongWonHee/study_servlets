@@ -7,31 +7,7 @@ import java.util.HashMap;
 
 import com.example.study_servlets.commons.Commons;
 
-public class OptioninforsDao {
-    // insert문 method화 하기
-    public int InsertWithName(String name) {
-         int count = 0;
-        try {
-            Commons getuuid = new Commons();
-            String uuid = getuuid.generatUuid();
-            Commons dbconnection = new Commons();
-            Statement editquery = dbconnection.getStatement();
-            String query = "INSERT INTO option_infors\n" + //
-                    "(OPTION_INFOR_ID,OPTION_NAME)\n" + //
-                    "VALUES ('"+uuid+"','"+name+"')";
-                    count = editquery.executeUpdate(query);
-                    // ResultSet insertion = editquery.executeQuery(query);
-                    // while(insertion.next()){
-                    //     System.out.println()
-                    // }
-                    
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-
-        }return count;
-        
-    }
-
+public class OptionInforsDao {
     // Delete문 Method화 하기
     public int DeleteWithUniqueID(String unique_id) {
         int count = 0;
@@ -79,10 +55,6 @@ public class OptioninforsDao {
             System.out.println(e.getMessage());
         }
         return optionInforList;
-    }
-
-    public int InsertWithUniqueID(String uuid) {
-        return 0;
     }
 
 }
