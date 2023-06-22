@@ -24,10 +24,6 @@ public class OptionInforsServlet extends HttpServlet {
             String query = "select *\n" + //
                     "from option_infors;";
             ResultSet resultset = statement.executeQuery(query);
-            while (resultset.next()) {
-                System.out.println(resultset.getString("OPTION_INFOR_ID") + "," + resultset.getString("OPTION_NAME"));
-
-            }
 
             String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
@@ -50,12 +46,17 @@ public class OptionInforsServlet extends HttpServlet {
                     "                    <th>OPTION_NAME</th>\r\n" + //
                     "                </tr>\r\n" + //
                     "            </thead>\r\n" + //
-                    "            <tbody>\r\n" + //
-                    "                <tr>\r\n" + //
-                    "                    <td>OPTION_INFOR_ID</td>\r\n" + //
-                    "                    <td>OPTION_NAME</td>\r\n" + //
-                    "                </tr>\r\n" + //
-                    "            </tbody>\r\n" + //
+                    "            <tbody>\r\n"; //
+            while (resultset.next()) {
+
+                contents = contents + "                <tr>\r\n" + //
+                        "                    <td>" + resultset.getString("OPTION_INFOR_ID") + "</td>\r\n" + //
+                        "                    <td>" + resultset.getString("OPTION_NAME") + "</td>\r\n" + //
+                        "                </tr>\r\n"; //
+
+            }
+
+            contents = contents + "            </tbody>\r\n" + //
                     "        </table>\r\n" + //
                     "    </div>\r\n" + //
                     "\r\n" + //

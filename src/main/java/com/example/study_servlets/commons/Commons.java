@@ -11,8 +11,8 @@ import java.util.UUID;
 public class Commons {
 
     public Statement getStatement() {
-        String url = "jdbc:mysql://127.0.0.1:3306/db_cars";
-        String user = "root";
+        String url = "jdbc:mysql://192.168.0.224:3306/db_cars";
+        String user = "yojulab";
         String password = "!yojulab*";
         // String url = "jdbc:mysql://192.168.0.46:3306/db_cars";
         // String user = "yojulab";
