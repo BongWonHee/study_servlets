@@ -40,8 +40,8 @@ public class ConnectDBServlet extends HttpServlet {
                     "<table class=\"table table-bordered table-hover\">\r\n" + //
                     "<thead>\r\n" + //
                     "<tr>\r\n" + //
-                    "<th>COMPANY</th>\r\n" + //              
-                    "<th>COMPANY_ID</th>                   \r\n" + //
+                    "<th>COMPANY</th>\r\n" + //
+                    "<th>COMPANY_ID</th>\r\n" + //
                     "</tr>\r\n" + //
                     "</thead>\r\n"; //
 
@@ -59,6 +59,16 @@ public class ConnectDBServlet extends HttpServlet {
                         "<td>" + hashMap.get("COMPANY") + "</td>                   \r\n" + //
                         "</tr>\r\n"; //
             }
+
+            contents = contents + 
+                    "<tr>\r\n" + //
+                    "<th>CAR_NAME</th>\r\n" + //
+                    "<th>YEAR</th>\r\n" + //
+                    "<th>CAR_INFOR_ID</th>\r\n" + //
+                    "<th>COMPANY_ID</th>\r\n" + //
+                    "</tr>\r\n" ;
+                   
+            
             CarInforsDao carInforsDao = new CarInforsDao();
             ArrayList carInforsList = new ArrayList<>();
             carInforsList = carInforsDao.seletAll();
@@ -74,15 +84,15 @@ public class ConnectDBServlet extends HttpServlet {
                         "</tr>\r\n"; //
             }
 
-            // contents = contents + "                </tr>\r\n" + //
-            //         "            </tbody>\r\n" + //
-            //         "        </table>\r\n" + //
-            //         "    </div>\r\n" + //
-            //         "</body>\r\n" + //
-            //         "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n"
-            //         + //
-            //         "\r\n" + //
-            //         "</html>";
+            contents = contents + "                </tr>\r\n" + //
+                    "            </tbody>\r\n" + //
+                    "        </table>\r\n" + //
+                    "    </div>\r\n" + //
+                    "</body>\r\n" + //
+                    "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n"
+                    + //
+                    "\r\n" + //
+                    "</html>";
 
             // 클라이언트에 html화면제공
             response.setContentType("text/html;charset=UTF-8");
