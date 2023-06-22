@@ -23,21 +23,24 @@ public class ConnectDBServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
 
-            // 클라이언트에 html 화면제공
+            // Client에 html 화면 제공
             String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
                     "\r\n" + //
                     "<head>\r\n" + //
-                    "<meta charset=\"UTF-8\">\r\n" + //
-                    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
-                    "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\">\r\n"
+                    "    <meta charset=\"UTF-8\">\r\n" + //
+                    "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n" + //
+                    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + //
+                    "    <title>bootstrap_tables</title>\r\n" + //
+                    "    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\">\r\n"
                     + //
-                    "<title>Document</title>\r\n" + //
                     "</head>\r\n" + //
                     "\r\n" + //
                     "<body>\r\n" + //
-                    "<div class=\"container\">\r\n" + //
-                    "<table class=\"table table-bordered table-hover\">\r\n" + //
+                    "    <div class=\"container\">\r\n" + //
+                    "        <table class=\"table table-bordered table-hover\">\r\n" + //
+                    "            <thead>\r\n" + //
+                    "                <tr>\r\n" + //
                     "<thead>\r\n" + //
                     "<tr>\r\n" + //
                     "<th colspan = \"2\">COMPANY</th>\r\n" + //
@@ -46,6 +49,7 @@ public class ConnectDBServlet extends HttpServlet {
                     "</thead>\r\n"; //
 
             // - query Edit
+
             FactorysDao factorysDao = new FactorysDao();
             ArrayList factorylist = new ArrayList<>();
             factorylist = factorysDao.seletAll();
@@ -59,8 +63,13 @@ public class ConnectDBServlet extends HttpServlet {
                         "<td colspan = \"2\">" + hashMap.get("COMPANY") + "</td>\r\n" + //
                         "</tr>\r\n"; //
             }
+<<<<<<< HEAD
 
             contents = contents +
+=======
+//바로 아래 contents는 CarInforsDao에 대한 thead 넣은 구문. 
+            contents = contents + 
+>>>>>>> dc832d0df2ce1a76256f8e411d2ffc4086c531eb
                     "<tr>\r\n" + //
                     "<th>CAR_NAME</th>\r\n" + //
                     "<th>YEAR</th>\r\n" + //
@@ -101,12 +110,13 @@ public class ConnectDBServlet extends HttpServlet {
 
             // }
             // query = "select count(*) as CNT from factorys;";
-            // resultSet = factoryDMLs.selectStatements(statement, query); // select문에서
-            // table 형태의 결과값 출력명령어
+            // resultSet = statement.executeQuery(query); // select문에서
+            // // table 형태의 결과값 출력명령어
             // int totalCount = 0;
             // while (resultSet.next()) {
             // System.out.println(resultSet.getInt("CNT"));
-            // totalCount = resultSet.getInt("CNT"); }
+            // totalCount = resultSet.getInt("CNT");
+            // }
 
             // insert into factorys
             // (COMPANY_ID, COMPANY)

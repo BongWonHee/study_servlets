@@ -15,18 +15,18 @@ public class FactorysDao {
             Statement statement = commons.getStatement();
             String query = "SELECT * FROM factorys";
             ResultSet resultSet = statement.executeQuery(query); //
-            HashMap hashMap = new HashMap<>();
+            HashMap hashMap = new HashMap<>(); // HashMap을 hashMap으로 선언한다!
             while (resultSet.next()) {
-                hashMap = new HashMap<>();
+                hashMap = new HashMap<>(); // 선언된 hashMap을 본다. 초기화 시켜서 담는다!
                 hashMap.put("COMPANY_ID", resultSet.getString("COMPANY_ID"));
                 hashMap.put("COMPANY", resultSet.getString("COMPANY"));
                 arrayList.add(hashMap);
-
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         return arrayList;
+
     }
 }
