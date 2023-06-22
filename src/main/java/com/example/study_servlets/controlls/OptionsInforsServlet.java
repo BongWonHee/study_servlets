@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlets.commons.Commons;
 import com.example.study_servlets.daos.CarInforsDao;
-import com.example.study_servlets.daos.OptionInforsDao;
+
+import com.example.study_servlets.daos.OptioninforsDao;
 
 @WebServlet(urlPatterns = "/optionsInforsServlet") // pattern url형식으로 들어온다.
 public class OptionsInforsServlet extends HttpServlet {
@@ -55,7 +56,7 @@ public class OptionsInforsServlet extends HttpServlet {
                     "                </tr>\r\n" + //
                     "            </thead>\r\n" + //
                     "            <tbody>\r\n"; //
-            OptionInforsDao optioninforsDao = new OptionInforsDao();
+            OptioninforsDao optioninforsDao = new OptioninforsDao();
             ArrayList optionInforList = new ArrayList();
             optionInforList = optioninforsDao.SeletWhithSearch(search);
 

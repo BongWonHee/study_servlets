@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlets.commons.Commons;
-import com.example.study_servlets.daos.OptionInforsDao;
+import com.example.study_servlets.daos.OptioninforsDao;
+
 
 @WebServlet(urlPatterns = "/optionInforsUpdateServlet")
 public class OptionInforsUpdateServlet extends HttpServlet {
@@ -20,7 +21,7 @@ public class OptionInforsUpdateServlet extends HttpServlet {
             int count = 0;
             
             String name = request.getParameter("name");
-            OptionInforsDao optionInforsDao = new OptionInforsDao();
+            OptioninforsDao optionInforsDao = new OptioninforsDao();
           
             count = optionInforsDao.UpdateWithCarInfos(name);
             

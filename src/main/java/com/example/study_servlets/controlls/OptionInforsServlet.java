@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlets.commons.Commons;
-import com.example.study_servlets.daos.OptionInforsDao;
+
+import com.example.study_servlets.daos.OptioninforsDao;
 
 @WebServlet(urlPatterns = "/optionInforsServlet")
 public class OptionInforsServlet extends HttpServlet {
@@ -54,7 +55,7 @@ public class OptionInforsServlet extends HttpServlet {
                     "                </tr>\r\n" + //
                     "            </thead>\r\n" + //
                     "            <tbody>\r\n"; //
-            OptionInforsDao optionInforsDao = new OptionInforsDao();
+            OptioninforsDao optionInforsDao = new OptioninforsDao();
             ArrayList optionInforList = new ArrayList();
 
             optionInforList = optionInforsDao.SeletWhithSearch(search);
