@@ -21,7 +21,7 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'mysql:mysql-connector-java:8.0.28'
+	implementation 'mysql:mysql-connector-java:8.0.28' //mysql과 자바 연결
 }
 
 tasks.named('test') {
