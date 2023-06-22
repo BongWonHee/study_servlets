@@ -40,8 +40,8 @@ public class ConnectDBServlet extends HttpServlet {
                     "<table class=\"table table-bordered table-hover\">\r\n" + //
                     "<thead>\r\n" + //
                     "<tr>\r\n" + //
-                    "<th>COMPANY</th>\r\n" + //
-                    "<th>COMPANY_ID</th>\r\n" + //
+                    "<th colspan = \"2\">COMPANY</th>\r\n" + //
+                    "<th colspan = \"2\">COMPANY_ID</th>\r\n" + //
                     "</tr>\r\n" + //
                     "</thead>\r\n"; //
 
@@ -55,20 +55,19 @@ public class ConnectDBServlet extends HttpServlet {
                 hashMap = (HashMap) factorylist.get(i);
 
                 contents = contents + "<tr>\r\n" + //
-                        "<td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
-                        "<td>" + hashMap.get("COMPANY") + "</td>                   \r\n" + //
+                        "<td colspan = \"2\">" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
+                        "<td colspan = \"2\">" + hashMap.get("COMPANY") + "</td>\r\n" + //
                         "</tr>\r\n"; //
             }
 
-            contents = contents + 
+            contents = contents +
                     "<tr>\r\n" + //
                     "<th>CAR_NAME</th>\r\n" + //
                     "<th>YEAR</th>\r\n" + //
                     "<th>CAR_INFOR_ID</th>\r\n" + //
                     "<th>COMPANY_ID</th>\r\n" + //
-                    "</tr>\r\n" ;
-                   
-            
+                    "</tr>\r\n";
+
             CarInforsDao carInforsDao = new CarInforsDao();
             ArrayList carInforsList = new ArrayList<>();
             carInforsList = carInforsDao.seletAll();
