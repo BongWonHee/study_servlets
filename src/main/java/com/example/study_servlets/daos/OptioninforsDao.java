@@ -8,14 +8,33 @@ import java.util.HashMap;
 import com.example.study_servlets.commons.Commons;
 
 public class OptionInforsDao {
-    // Delete문 Method화 하기
-    public int DeleteWithUniqueID(String unique_id) {
+    public int UpdateWithCarInfos(String name) {
         int count = 0;
         try {
             Commons commons = new Commons();
-            Statement statement = commons.getStatement();// Editor in Workbench
-            String query = "DELETE FROM option_infors\n" + //
-                    "WHERE OPTION_INFOR_ID ='" + unique_id + "'";
+            Statement statement = commons.getStatement();
+            String query = "update option_infors\n" + //
+                    "set  OPTION_NAME = '" + name + "'\n" + //
+                    "where OPTION_INFOR_ID = 'OI001';\n" + //
+                    "";
+            count = statement.executeUpdate(query);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return count;
+
+    }
+
+    public int InsertWithCarInfos(String name) {
+        int count = 0;
+        try {
+            Commons commons = new Commons();
+            String UUID = commons.getGeneratorID();
+            Statement statement = commons.getStatement();
+            String query = "insert into option_infors\n" + //
+                    "(OPTION_INFOR_ID,OPTION_NAME)\n" + //
+                    "value\n" + //
+                    "('" + UUID + "','" + name + "');";
             count = statement.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -23,34 +42,44 @@ public class OptionInforsDao {
         return count;
     }
 
-    // while문을 Method로 돌리기_INSERT, SELECT, UPDATE, DELETE
-    public ArrayList SelectWithSearch(String search) {
-        ArrayList optionInforList = new ArrayList<>();
-
+    public int DeleteWithUniqeID(String unique_id) {
+        int count = 0;
         try {
-            // null은 뭔지 모름. 무한대의 null임. 고로 if 조건으로 search에 빈값임을 알려줌
-            if (search == null) {
+            Commons commons = new Commons();
+            Statement statement = commons.getStatement();
+            String query = "delete from option_infors\n" + //
+                    "where OPTION_INFOR_ID = '" + unique_id + "' ;";
+            count = statement.executeUpdate(query);
 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return count;
+    }
+
+    public ArrayList SeletWhithSearch(String search) {
+
+        ArrayList optionInforList = new ArrayList();
+        try {
+            if (search == null) { // search의 값이 null일때 공란으로 적용하는 if문
                 search = "";
             }
             Commons commons = new Commons();
-            Statement statement = commons.getStatement();// statement에 query던지기
-            String query = "SELECT *\n" + //
-                    "FROM option_infors\n" + //
-                    "WHERE OPTION_NAME LIKE'" + search + "%'";
-            ResultSet resultSet = statement.executeQuery(query);
-            // Resultset으로 query던진 결과 받기?
+            Statement statement = commons.getStatement(); // Editor in Workbanch
+            String query = "select *\n" + //
+                    "from option_infors\n" +
+                    "where OPTION_NAME like '" + search + "%';";
+            ResultSet resultset = statement.executeQuery(query);
+
             HashMap optionInforRecord = new HashMap<>();
-            // while (resultSet.next())는 하나씩 불러온다는 뜻. record형식으로 = row 형식으로
-            while (resultSet.next()) {
+            while (resultset.next()) {
                 optionInforRecord = new HashMap<>();
-                optionInforRecord.put("OPTION_INFOR_ID", resultSet.getString("OPTION_INFOR_ID"));
-                optionInforRecord.put("OPTION_NAME", resultSet.getString("OPTION_NAME"));
+                optionInforRecord.put("OPTION_INFOR_ID", resultset.getString("OPTION_INFOR_ID"));
+                optionInforRecord.put("OPTION_NAME", resultset.getString("OPTION_NAME"));
 
-                optionInforList.add(optionInforRecord);// hashmap을 arraylist에 담는다
-
+                optionInforList.add(optionInforRecord);
             }
-            // resultset으로 담아진 결과를 getString으로 받기
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
