@@ -23,8 +23,6 @@ public class ConnectDBServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
 
-            String query = "";
-
             // Client에 html 화면 제공
             String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
@@ -51,63 +49,61 @@ public class ConnectDBServlet extends HttpServlet {
                     "            </thead>\r\n" + //
                     "            <tbody>\r\n";
             // - query Edit
-            // // FactoryDMLs factoryDMLs = new FactoryDMLs();
-            // ResultSet resultSet = factoryDMLs.selectStatements(statement, query); //
-            // select문에서 table 형태의 결과값 출력명령어
-            // while문이 돌면서 tr의 td 형태로 붙음.
-            FactorysDao factorysDao = new FactorysDao();
-            ArrayList factoryList = new ArrayList();
-            factoryList = factorysDao.selectAll();
-            for (int i = 0; i < factoryList.size(); i = i + 1) {
-                HashMap hashMap = new HashMap();
-                hashMap = (HashMap) factoryList.get(i);
-                contents = contents + "<tr>\r\n" + //
-                        "                    <td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
-                        "                    <td>" + hashMap.get("COMPANY") + "</td>\r\n" + //
-                        "                </tr>\r\n";
-            }
-            // ArrayList에서 먼저 나오는건 HashMap..
-            // i=i+1 = i ++
 
-            contents = contents + "                    <th>CAR_NAME</th>\r\n" + //
+            FactorysDao factorysDao = new FactorysDao();
+            ArrayList factorylist = new ArrayList<>();
+            factorylist = factorysDao.seletAll();
+            // select문에서 table 형태의 결과값 출력명령어
+            for (int i = 0; i < factorylist.size(); i++) {
+                HashMap hashMap = new HashMap<>();
+                hashMap = (HashMap) factorylist.get(i);
+
+                contents = contents + "<tr>\r\n" + //
+                        "<td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
+                        "<td>" + hashMap.get("COMPANY") + "</td>                   \r\n" + //
+                        "</tr>\r\n"; //
+            }
+//바로 아래 contents는 CarInforsDao에 대한 thead 넣은 구문. 
+             contents = contents + "                    <th>CAR_NAME</th>\r\n" + //
                     "                    <th>YEAR</th>\r\n" + //
                     "                    <th>CAR_INFOR_ID</th>\r\n" + //
                     "                    <th>COMPANY_ID</th>\r\n" + //
                     "                </tr>\r\n" + //
                     "            </thead>\r\n" + //
                     "            <tbody>\r\n";
-            CarInforsDao carinforsdao = new CarInforsDao();
-            ArrayList carinformation = new ArrayList();
+                    
+            CarInforsDao carInforsDao = new CarInforsDao();
+            ArrayList carInforsList = new ArrayList<>();
+            carInforsList = carInforsDao.seletAll();
+            for (int i = 0; i < carInforsList.size(); i++) {
+                HashMap hashMap = new HashMap<>();
+                hashMap = (HashMap) carInforsList.get(i);
 
-            carinformation = carinforsdao.carInfor();
-            HashMap hashmaps = new HashMap();
-            for (int first = 0; first < carinformation.size(); first = first + 1) {
-                hashmaps = new HashMap();
-                hashmaps = (HashMap) carinformation.get(first);
                 contents = contents + "<tr>\r\n" + //
-                        "                    <td>" + hashmaps.get("CAR_NAME") + "</td>\r\n" + //
-                        "                    <td>" + hashmaps.get("YEAR") + "</td>\r\n" + //
-                        "                    <td>" + hashmaps.get("CAR_INFOR_ID") + "</td>\r\n" + //
-                        "                    <td>" + hashmaps.get("COMPANY_ID") + "</td>\r\n" + //
-                        "                </tr>\r\n";
-
+                        "<td>" + hashMap.get("CAR_NAME") + "</td>\r\n" + //
+                        "<td>" + hashMap.get("YEAR") + "</td>  \r\n" + //
+                        "<td>" + hashMap.get("CAR_INFOR_ID") + "</td>  \r\n" + //
+                        "<td>" + hashMap.get("COMPANY_ID") + "</td>  \r\n" + //
+                        "</tr>\r\n"; //
             }
 
-            contents = contents + "</tbody>\r\n" + //
+            contents = contents + "                </tr>\r\n" + //
+                    "            </tbody>\r\n" + //
                     "        </table>\r\n" + //
                     "    </div>\r\n" + //
-                    "\r\n" + //
                     "</body>\r\n" + //
                     "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n"
                     + //
                     "\r\n" + //
                     "</html>";
+
+            // 클라이언트에 html화면제공
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter printWriter = response.getWriter();
             printWriter.println(contents);
             printWriter.close();
 
-            // SELECT COUNT(*)
+            // }
             // query = "select count(*) as CNT from factorys;";
             // resultSet = statement.executeQuery(query); // select문에서
             // // table 형태의 결과값 출력명령어
@@ -146,7 +142,7 @@ public class ConnectDBServlet extends HttpServlet {
             // connection.close();
 
         } catch (Exception e) {
-            // TODO: handle exception
+
             System.out.println(e.getMessage());
         } finally {
             System.out.println();
