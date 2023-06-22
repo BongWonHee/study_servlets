@@ -3,6 +3,8 @@ package com.example.study_servlets.controlls;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlets.commons.Commons;
+import com.example.study_servlets.daos.OptionInforsDao;
 
 @WebServlet(urlPatterns = "/optionInforsServlet")
 public class OptionInforsServlet extends HttpServlet {
@@ -19,12 +22,8 @@ public class OptionInforsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Commons commons = new Commons();
-            Statement statement = commons.getStatement();
-            String query = "select *\n" + //
-                    "from option_infors;";
-            ResultSet resultset = statement.executeQuery(query);
-
+            
+            String search = request.getParameter("search");
             String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
                     "\r\n" + //
@@ -38,6 +37,14 @@ public class OptionInforsServlet extends HttpServlet {
                     "</head>\r\n" + //
                     "\r\n" + //
                     "<body>\r\n" + //
+                    "<div class=\"container\">\r\n" + //
+                    "        <form action=\"/optionInforsServlet\">\r\n" + //
+                    "            <label for=\"go\">\uAC80\uC0C9</label>\r\n" + //
+                    "            <input type=\"text\" name=\"search\" value=\"" + search + "\" id=\"go\">\r\n" + //
+                    "            <button type=\"submit\" class=\"bg-gray\">\uAC80\uC0C9\uD558\uAE30</button>\r\n" + //
+                    "            \r\n" + //
+                    "        </form>\r\n" + //
+                    "    </div>" +
                     "    <div class=\"container\">\r\n" + //
                     "        <table class=\"table table-bordered table-hover\">\r\n" + //
                     "            <thead>\r\n" + //
@@ -47,12 +54,18 @@ public class OptionInforsServlet extends HttpServlet {
                     "                </tr>\r\n" + //
                     "            </thead>\r\n" + //
                     "            <tbody>\r\n"; //
-            while (resultset.next()) {
+            OptionInforsDao optionInforsDao = new OptionInforsDao();
+            ArrayList optionInforList = new ArrayList();
 
-                contents = contents + "                <tr>\r\n" + //
-                        "                    <td>" + resultset.getString("OPTION_INFOR_ID") + "</td>\r\n" + //
-                        "                    <td>" + resultset.getString("OPTION_NAME") + "</td>\r\n" + //
-                        "                </tr>\r\n"; //
+            optionInforList = optionInforsDao.SeletWhithSearch(search);
+
+            for (int i = 0; i < optionInforList.size(); i++) {
+                HashMap optionInforRecord = new HashMap<>();
+                optionInforRecord = (HashMap) optionInforList.get(i);
+                contents = contents + " <tr>\r\n" +
+                        "<td>" + optionInforRecord.get("OPTION_INFOR_ID") + "</td>\r\n" + //
+                        "<td>" + optionInforRecord.get("OPTION_NAME") + "</td>\r\n" +
+                        "</tr>\r\n";
 
             }
 
@@ -61,6 +74,7 @@ public class OptionInforsServlet extends HttpServlet {
                     "    </div>\r\n" + //
                     "\r\n" + //
                     "</body>\r\n" + //
+
                     "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n"
                     + //
                     "</html>";
@@ -70,9 +84,10 @@ public class OptionInforsServlet extends HttpServlet {
             PrintWriter printWriter = response.getWriter();
             printWriter.println(contents);
             printWriter.close();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
 
+    }
 }
