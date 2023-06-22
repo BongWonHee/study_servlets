@@ -2,6 +2,8 @@ package com.example.study_servlets.controlls;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlets.commons.Commons;
+import com.example.study_servlets.daos.OptioninforsDao;
 
 @WebServlet(urlPatterns = "/optionsInforsServlet") // pattern url형식으로 들어온다.
 public class OptionsInforsServlet extends HttpServlet {
@@ -20,12 +23,9 @@ public class OptionsInforsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Commons commons = new Commons();
-            Statement statement = commons.getStatement();// statement에 query던지기
-            String query = "SELECT *\n" + //
-                    "FROM option_infors;";
-            ResultSet resultSet = statement.executeQuery(query);// Resultset으로 query던진 결과 받기?
+                        String search = request.getParameter("search");
 
+            String temp = "";
             String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
                     "<head>\r\n" + //
@@ -37,6 +37,14 @@ public class OptionsInforsServlet extends HttpServlet {
                     "    <title>Option_information</title>\r\n" + //
                     "</head>\r\n" + //
                     "<body>\r\n" + //
+                    "<div class=\"container\">\r\n" + //
+                    "        <form action=\"/optionsInforsServlet\" >\r\n" + //
+                    "        <!-- method=\"get\"> -->\r\n" + //
+                    "        <label for=\"\">\uAC80\uC0C9</label>\r\n" + //
+                    "        <input type=\"text\" name=\"search\" value ='"+search+"'>\r\n" + //
+                    "        <button>\uAC80\uC0C9 \uD558\uAE30</button>\r\n" + //
+                    "        </form>\r\n" + //
+                    "    </div>" + //
                     "    <div class=\"container\">\r\n" + //
                     "        <table class=\"table table-bordered table-hover\">\r\n" + //
                     "            <thead>\r\n" + //
@@ -46,11 +54,16 @@ public class OptionsInforsServlet extends HttpServlet {
                     "                </tr>\r\n" + //
                     "            </thead>\r\n" + //
                     "            <tbody>\r\n"; //
-            while (resultSet.next()) {
-                System.out.println();
+            OptioninforsDao optioninforsDao = new OptioninforsDao();
+            ArrayList optionInforList = new ArrayList();
+            optionInforList = optioninforsDao.SelectWithSearch(search);
+
+            for (int i = 0; i < optionInforList.size(); i = i + 1) {
+                HashMap optionInforRecord = new HashMap<>();
+                optionInforRecord = (HashMap) optionInforList.get(i);
                 contents = contents + "                <tr>\r\n" + //
-                        "                    <td>" + resultSet.getString("OPTION_INFOR_ID") + "</td>\r\n" + //
-                        "                    <td>" + resultSet.getString("OPTION_NAME") + "</td>\r\n" + //
+                        "                    <td>" + optionInforRecord.get("OPTION_INFOR_ID") + "</td>\r\n" + //
+                        "                    <td>" + optionInforRecord.get("OPTION_NAME") + "</td>\r\n" + //
                         "                </tr>\r\n";
             }
             // resultset으로 담아진 결과를 getString으로 받기
