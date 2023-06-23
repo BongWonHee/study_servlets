@@ -19,7 +19,7 @@ public int UpdateWithCarInfos(String name){
                 "";
                 count = statement.executeUpdate(query);
     } catch (Exception e) {
-        // TODO: handle exception
+       System.out.println(e.getMessage());
     }
     return count ;
 
