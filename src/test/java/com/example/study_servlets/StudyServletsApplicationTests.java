@@ -8,6 +8,7 @@ class StudyServletsApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }

@@ -30,5 +30,4 @@ public class SessionFilter implements Filter { // Filter는 interface임.
             System.out.println(e.getMessage());
         }
     }
-
 }

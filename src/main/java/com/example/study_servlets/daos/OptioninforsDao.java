@@ -42,6 +42,42 @@ public class OptioninforsDao {
         return count;
     }
 
+    public int UpdateWithName(String uniqueID, String changename) {
+        int count = 0;
+        try {
+            Commons dbconnection = new Commons();
+            Statement update = dbconnection.getStatement();
+            uniqueID = "";
+            changename = "";
+            String query = "UPDATE option_infors\n" + //
+                    "SET OPTION_NAME = '"+changename+"'\n" + //
+                    "WHERE OPTION_INFOR_ID = '" + uniqueID + "';";
+            count = update.executeUpdate(query);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
+
+    public int InsertWithName(String name) {
+        int count = 0;
+        try {
+            Commons dbconnection = new Commons();
+            Statement insertion = dbconnection.getStatement();
+            String newuuid = dbconnection.getGeneratorID();
+
+            String query = "INSERT INTO option_infors\n" + //
+                    "(OPTION_INFOR_ID,OPTION_NAME)\n" + //
+                    "VALUES ('" + newuuid + "','" + name + "');";
+            count = insertion.executeUpdate(query);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
+    }
+
     public int DeleteWithUniqeID(String unique_id) {
         int count = 0;
         try {

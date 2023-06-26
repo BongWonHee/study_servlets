@@ -13,7 +13,7 @@
         <form action="/getRequestParamsServlet" method="get">
             <div> first name : <input type="text" name="first_name"></div>
             <div> second name : <input type="text" name="second_name"></div>
-            <div> <button type="submit">보내기</button></div>
+            <div> <button type="submit">go</button></div>
         </form>
     </body>
 </body>

@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 public class HelloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("HelloWorldServlet - doGet()");
+        System.out.println("HelloWorldServlet - doGet() done.");
+
         try {
+            response.setContentType("text/html;charset=UTF8");
             String firstName = "WonHee";
             String secondName = "Bong";
             // 클라이언트에게 네트워크를 통해서 전송 하는 것
