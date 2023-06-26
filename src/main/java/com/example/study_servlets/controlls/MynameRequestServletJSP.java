@@ -18,9 +18,10 @@ public class MynameRequestServletJSP extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            //jsp
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
-            requestDispatcher.forward(request,response);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/myNamerequest.jsp");
+            requestDispatcher.forward(request, response);
+            
+          
         } catch (Exception e) {
 
             System.out.println(e.getMessage());

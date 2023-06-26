@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlets.commons.Commons;
-import com.example.study_servlets.daos.OptionInforsDao;
+import com.example.study_servlets.daos.OptioninforsDao;
 
 @WebServlet(urlPatterns = "/optionInforsDeleteServlet")
-public class OptionInforsDeleteServlet<OptioninforsDao> extends HttpServlet {
+public class OptionInforsDeleteServlet extends HttpServlet {
     @Override
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +25,7 @@ public class OptionInforsDeleteServlet<OptioninforsDao> extends HttpServlet {
             // 2) unique_id를 받을때 int로 return???????
 
             String unique_id = request.getParameter("unique_id");
-            OptionInforsDao optionInforsDao = new OptionInforsDao();
+            OptioninforsDao optionInforsDao = new OptioninforsDao();
             int count = optionInforsDao.DeleteWithUniqeID(unique_id);
 
             response.setContentType("text/html;charset=UTF-8");

@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import com.example.study_servlets.commons.Commons;
 
-public class OptionInforsDao {
+public class OptioninforsDao {
     public int UpdateWithCarInfos(String name) {
         int count = 0;
         try {
@@ -19,7 +19,7 @@ public class OptionInforsDao {
                     "";
             count = statement.executeUpdate(query);
         } catch (Exception e) {
-            // TODO: handle exception
+            System.out.println(e.getMessage());
         }
         return count;
 

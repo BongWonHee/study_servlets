@@ -10,21 +10,22 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-// @WebFilter(urlPatterns ="/*")
-//url로 request가 들어 올때 Webfilter로 통해서 필요 부분의 servlet만 작동하게 한다!!
+import org.springframework.boot.devtools.remote.server.Dispatcher;
 
-public class SimpleFilter implements Filter {
+// @WebFilter(urlPatterns = "/*") // 모든url을 확인
+public class SimpleFilter implements Filter { // Filter는 interface임.
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         try {
-
-            // 지나가는 통로 check
             System.out.println(request.getRemoteHost());
             System.out.println(request.getRemoteAddr());
-            
-            chain.doFilter(request, response);
+           
+        
+          
+            chain.doFilter(request, response);// 필터로 들어온 정보를 해당 url로 다시 보내준다.
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

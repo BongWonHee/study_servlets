@@ -16,20 +16,21 @@ public class CookiesCreateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Cookie cookie_first = new Cookie("firstName", "sa");
-            Cookie cookie_second = new Cookie("secondName", "k@@@@@@@@@");
+            // cookie에 관한 것
+            Cookie cookie_first = new Cookie("firstName", "Wonhee!!");
+            Cookie cookie_second = new Cookie("secondName", "Bong");
+
             response.addCookie(cookie_first);
             response.addCookie(cookie_second);
 
             // display
+            response.setContentType("text/html;charsetUTF=8");
             PrintWriter printWriter = response.getWriter();
-            String content = "<div>CreateCookieServlets</div>";
-            printWriter.println(content);
+            String contents = "<div>CreateCookeServlets</div>";
+            printWriter.println(contents);
             printWriter.close();
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-
 }

@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.example.study_servlets.commons.Commons;
-import com.example.study_servlets.daos.OptionInforsDao;
+
+import com.example.study_servlets.daos.OptioninforsDao;
 
 @WebServlet(urlPatterns = "/optionInforsInsertServlet")
 public class OptionInforsInsertServlet extends HttpServlet{
@@ -20,7 +21,7 @@ public class OptionInforsInsertServlet extends HttpServlet{
     protected void doGet(HttpServletRequest requset, HttpServletResponse response) throws ServletException, IOException {
         try {
             String name = requset.getParameter("name");
-            OptionInforsDao optionInforsDao = new OptionInforsDao();
+            OptioninforsDao optionInforsDao = new OptioninforsDao();
             int count = optionInforsDao.InsertWithCarInfos(name);
              response.setContentType("text/html;charset=UTF8");
             PrintWriter printWriter = response.getWriter();

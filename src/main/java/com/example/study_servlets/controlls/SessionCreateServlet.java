@@ -23,17 +23,15 @@ public class SessionCreateServlet extends HttpServlet {
             // display
             PrintWriter printWriter = response.getWriter();
             printWriter.println("<div>Create Session Servlets</div>");
-            // login
+            // login 할때 jsession 있는지 판단해서 있으면 만들지 않고 없으면 만들어줌.
             HttpSession httpSession = request.getSession(false);
-            if (httpSession != null) {
-                // JSESSION 있음 : 기존 내용만 표시=로그인 됨.
-                // (pw는 가져올 필요없음. client에게 보여지는거니까..??)
-                String nameSession = (String) httpSession.getAttribute("username");
-                printWriter.println("<div> Username : " + nameSession + "</div>");
+            if (httpSession != null) { // jsession 있음 로그인 됨
+                String usernamesession = (String) httpSession.getAttribute("username");
+                printWriter.println("<div>username : " + usernamesession + "</div>");
 
-            } else {// JSESSION 없음 : login을 해야한다.
-                if ("yoju".equals(username) && "1234".equals(password)) {
-                    httpSession = request.getSession();
+            } else { // jsession 없음 로그인이 안됨.
+                if ("yojulab".equals(username) && "1234".equals(password)) {
+                    httpSession = request.getSession();// 방어코드 임.
                     httpSession.setAttribute("username", username);
                     httpSession.setAttribute("password", password);
                     printWriter.println("<div>" + username + ", " + password + "</div>");
