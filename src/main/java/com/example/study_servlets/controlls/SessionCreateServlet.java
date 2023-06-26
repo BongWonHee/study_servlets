@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+// username = yojulab&password=1234 
 @WebServlet(urlPatterns = "/session/CreateServlet")
 public class SessionCreateServlet extends HttpServlet {
     @Override

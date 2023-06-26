@@ -8,8 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.example.study_servlets.controlls.OptionInforsDao;
+import com.example.study_servlets.daos.OptioninforsDao;
 
-import com.example.study_servlets.daos.OptionInforsDao;
 
 @WebServlet(urlPatterns = "/optionInforsUpdateServlet")
 public class OptionInforsUpdate extends HttpServlet {
@@ -22,7 +23,7 @@ public class OptionInforsUpdate extends HttpServlet {
             String uniqueID = request.getParameter("uniqueID");
             String changename = request.getParameter("changename");
 
-            OptionInforsDao update = new OptionInforsDao();
+            OptioninforsDao update = new OptioninforsDao();
             int count = update.UpdateWithCarInfos(changename);
             update.UpdateWithCarInfos(getServletName());
             response.setContentType("text/html;charset=UTF-8");
