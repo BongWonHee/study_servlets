@@ -8,22 +8,22 @@ import java.util.HashMap;
 import com.example.study_servlets.commons.Commons;
 
 public class OptionInforsDao {
-public int UpdateWithCarInfos(String name){
-    int count = 0 ;
-    try {
-        Commons commons = new Commons();
-        Statement statement = commons.getStatement();
-        String query="update option_infors\n" + //
-                "set OPTION_NAME = '"+name+"'\n" + //
-                "where OPTION_NAME = OPTION_INFOR_ID = 'OI001';\n" + //
-                "";
-                count = statement.executeUpdate(query);
-    } catch (Exception e) {
-        // TODO: handle exception
-    }
-    return count ;
+    public int UpdateWithCarInfos(String name) {
+        int count = 0;
+        try {
+            Commons commons = new Commons();
+            Statement statement = commons.getStatement();
+            String query = "update option_infors\n" + //
+                    "set OPTION_NAME = '" + name + "'\n" + //
+                    "where OPTION_NAME = OPTION_INFOR_ID = 'OI001';\n" + //
+                    "";
+            count = statement.executeUpdate(query);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return count;
 
-}
+    }
 
     public int InsertWithCarInfos(String name) {
         int count = 0;
@@ -36,6 +36,42 @@ public int UpdateWithCarInfos(String name){
                     "value\n" + //
                     "('" + UUID + "','" + name + "');";
             count = statement.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
+    }
+
+    public int UpdateWithName(String uniqueID, String changename) {
+        int count = 0;
+        try {
+            Commons dbconnection = new Commons();
+            Statement update = dbconnection.getStatement();
+            uniqueID = "";
+            changename = "";
+            String query = "UPDATE option_infors\n" + //
+                    "SET OPTION_NAME = '"+changename+"'\n" + //
+                    "WHERE OPTION_INFOR_ID = '" + uniqueID + "';";
+            count = update.executeUpdate(query);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
+
+    public int InsertWithName(String name) {
+        int count = 0;
+        try {
+            Commons dbconnection = new Commons();
+            Statement insertion = dbconnection.getStatement();
+            String newuuid = dbconnection.getGeneratorID();
+
+            String query = "INSERT INTO option_infors\n" + //
+                    "(OPTION_INFOR_ID,OPTION_NAME)\n" + //
+                    "VALUES ('" + newuuid + "','" + name + "');";
+            count = insertion.executeUpdate(query);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

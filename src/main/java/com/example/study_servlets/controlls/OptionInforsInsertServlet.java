@@ -45,7 +45,7 @@ public class OptionInforsInsertServlet extends HttpServlet{
 //         try {
 //             // insert를 위한 method만들기_OptioninforsDao에 만들자.
 //             String name = request.getParameter("name");
-//             OptioninforsDao insertionOption = new OptioninforsDao();
+//             OptionInforsDao insertionOption = new OptionInforsDao();
 //             int count = insertionOption.InsertWithName(name);
 
 //             // response print하기
@@ -53,6 +53,7 @@ public class OptionInforsInsertServlet extends HttpServlet{
 //             PrintWriter printwriter = response.getWriter();
 //             String result = "Insert count: "+ count;
 //             printwriter.println(result);
+
 //             printwriter.close();
 //         } catch (Exception e) {
 //             System.out.println(e.getMessage());
