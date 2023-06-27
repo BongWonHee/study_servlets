@@ -111,7 +111,7 @@ public class OptioninforsDao {
             HashMap optionInforRecord = new HashMap<>();
             while (resultset.next()) {
                 optionInforRecord = new HashMap<>();
-                optionInforRecord.put("OPTION_INFOR_ID", resultset.getString("OPTION_INFOR_ID"));
+                optionInforRecord.put("ID", resultset.getString("ID"));
                 optionInforRecord.put("OPTION_NAME", resultset.getString("OPTION_NAME"));
 
                 optionInforList.add(optionInforRecord);
