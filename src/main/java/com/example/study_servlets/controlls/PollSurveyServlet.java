@@ -37,8 +37,10 @@ public class PollSurveyServlet extends HttpServlet {
                     survey = new HashMap<>();
                     survey = (HashMap) surveyList.get(j);
                     String choice = (String) survey.get("CHOICE");
-                    System.out.println(choice);
+                    System.out.print(choice+" ");
+                    
                  }
+                 System.out.println();
             }
             
 
