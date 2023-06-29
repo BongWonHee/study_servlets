@@ -23,6 +23,7 @@ public class SessionCreateServlet extends HttpServlet {
             // display
             PrintWriter printWriter = response.getWriter();
             printWriter.println("<div>Create Session Servlets</div>");
+            
             // login 할때 jsession 있는지 판단해서 있으면 만들지 않고 없으면 만들어줌.
             HttpSession httpSession = request.getSession(false);
                            String usernamesession = (String) httpSession.getAttribute("username");

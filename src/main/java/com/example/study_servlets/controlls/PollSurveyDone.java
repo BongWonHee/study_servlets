@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlets.daos.PollsDao;
 
-@WebServlet(urlPatterns = "/poll/SurveyDone")
-public class PollSurveyDone extends HttpServlet {
+@WebServlet(urlPatterns = "/poll/surveyDone")
+public class PollsurveyDone extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {

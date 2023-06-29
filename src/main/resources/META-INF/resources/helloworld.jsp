@@ -12,9 +12,9 @@
         </head>
 
         <body>
-            <% String usernameSession=(String)session.getAttribute("username"); %>
+            <% String contents=(String)request.getAttribute("contents"); %>
                 <div>
-                    Username : <%= usernameSession %>
+                    html Value : Yoju lab !
                 </div>
                 <div>
                     Login Status :

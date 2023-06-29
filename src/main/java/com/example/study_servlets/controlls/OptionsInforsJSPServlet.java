@@ -26,22 +26,30 @@ public class OptionsInforsJSPServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            //남은 code는 search만
-            String search = request.getParameter("search");
-
-            String contents = "";
+            String search = request.getParameter("search");       
             OptioninforsDao optioninforsDao = new OptioninforsDao();
-            ArrayList optionInforList = new ArrayList<>();
+            ArrayList optionInforList = new ArrayList();
             optionInforList = optioninforsDao.SeletWhithSearch(search);
-
             request.setAttribute("search", search);
             request.setAttribute("optionInforList", optionInforList);
-            //getWriter하기 전에 characterset을 하기_
+            // servlet을 지나가기 때문에 설정해 주자.
             response.setContentType("text/html;charset=UTF-8");
-
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/cars/option_infors.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Cars/option_infors.jsp");
             requestDispatcher.forward(request, response);
 
+            // for (int i = 0; i < optionInforList.size(); i = i + 1) {
+            //     HashMap optionInforRecord = new HashMap<>();
+            //     optionInforRecord = (HashMap) optionInforList.get(i);
+            //     // contents = contents + " <tr>\r\n" + //
+            //     // " <td>" + optionInforRecord.get("OPTION_INFOR_ID") + "</td>\r\n" + //
+            //     // " <td>" + optionInforRecord.get("OPTION_NAME") + "</td>\r\n" + //
+            //     // " </tr>\r\n";
+            // }
+
+            
+            // PrintWriter printWriter = response.getWriter();
+            // printWriter.println(contents);
+            // printWriter.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
