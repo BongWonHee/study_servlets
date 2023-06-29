@@ -35,7 +35,7 @@ public class PollSurveyServlet extends HttpServlet {
                 String question = (String) survey.get("QUESTIONS");
                 String questionid = (String) survey.get("QUESTIONS_ID");
                 String choice = (String) survey.get("CHOICE");
-            
+            //QUESTIONS_ID 와 값을 비교하는 조건문.
                 if (!compare.equals(questionid)) {
                     System.out.println(question);
                     System.out.println(choice + " ");

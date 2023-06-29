@@ -40,4 +40,33 @@ public class PollsDao {
         }
         return InforList;
     }
+
+    public int Insert(HashMap<String, Object> map) {
+        int count = 0;
+        try {
+            Commons commons = new Commons();
+            Statement statement = commons.getStatement();
+            String query = "insert into statistics\n" + //
+                    "(STATISTICS_ID,RESPONDENTS_ID,QUESTIONS_ID,CHOICE_ID )\n" + //
+                    "value\n";
+            int loops = 1;
+            String userid = "R1"; // from session
+            for (String key : map.keySet()) { // 해쉬맵의 키뭉치를 받아서 풀어주는것
+                String uuid = commons.generatUuid();
+
+                if (loops > 1) {// for문이 작동하는 동안 첫번째를 재외한 나머지는 콤마를 넣어주자.
+                    query = query + ", ";
+                }
+                query = query + "('" + uuid + "','" + userid + "','" + key + "','" + map.get(key) + "')\n"; //
+                // System.out.println(key + ", " + map.get(key));
+                loops = loops + 1;
+            }
+            query = query + ";";
+            count = statement.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
+    }
+
 }
