@@ -26,9 +26,9 @@ public class SessionCreateServlet extends HttpServlet {
             
             // login 할때 jsession 있는지 판단해서 있으면 만들지 않고 없으면 만들어줌.
             HttpSession httpSession = request.getSession(false);
-            String usernamesession = (String)httpSession.getAttribute("username");
-            if (httpSession != null && usernamesession != null) { // jsession 있음 로그인 됨
-                
+                           String usernamesession = (String) httpSession.getAttribute("username");
+
+            if (httpSession != null && usernamesession !=null) { // jsession 있음 로그인 됨
                 printWriter.println("<div>username : " + usernamesession + "</div>");
 
             } else { // jsession 없음 로그인이 안됨.
